@@ -1,0 +1,302 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --gold: #c4a43c;
+    --ruby: #9b2c2c;
+    --emerald: #2d6a4f;
+    --text-primary-light: #1a1a2e;
+    --text-secondary-light: #2d2d44;
+    --text-muted-light: #6c6c8a;
+    --text-primary-dark: #f5e6d3;
+    --text-secondary-dark: #d4c5b0;
+    --text-muted-dark: #a89480;
+  }
+
+  body {
+    font-family: "Poppins", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    background-image: url("https://images.pexels.com/photos/32102403/pexels-photo-32102403.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  /* Light theme - متن تیره */
+  body.light {
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --text-muted: var(--text-muted-light);
+  }
+
+  /* Dark theme - متن سفید و روشن */
+  body.dark {
+    --text-primary: var(--text-primary-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --text-muted: var(--text-muted-dark);
+  }
+
+  /* Light theme overlay */
+  body.light::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 248, 240, 0.15);
+    backdrop-filter: blur(5px);
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Dark theme overlay */
+  body.dark::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+@layer components {
+  /* Gold gradient text */
+  .gold-gradient-text {
+    @apply bg-gradient-to-r from-[#c4a43c] via-[#e0c460] to-[#c4a43c] bg-clip-text text-transparent;
+  }
+  
+  /* Gold gradient background */
+  .gold-gradient-bg {
+    @apply bg-gradient-to-r from-[#c4a43c] via-[#e0c460] to-[#c4a43c];
+  }
+  
+  /* Glass blur effect */
+  .glass-blur {
+    @apply backdrop-blur-xl bg-white/30 dark:bg-[#141428]/50 border border-white/40 dark:border-white/15;
+  }
+  
+  /* Stronger glass blur */
+  .glass-blur-strong {
+    @apply backdrop-blur-2xl bg-white/25 dark:bg-[#141428]/45 border border-white/45 dark:border-white/15;
+  }
+  
+  /* Text colors using CSS variables */
+  .text-primary {
+    color: var(--text-primary);
+  }
+  
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+  
+  .text-muted {
+    color: var(--text-muted);
+  }
+  
+  /* Line clamp for text */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@layer utilities {
+  /* Float animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .animate-float {
+    animation: float 3s ease infinite;
+  }
+  
+  /* FadeInUp animation */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate-fade-in-up {
+    animation: fadeInUp 0.4s ease forwards;
+  }
+  
+  /* Shimmer animation for skeletons */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+  
+  /* Spin animation */
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .animate-spin-slow {
+    animation: spin 0.8s linear infinite;
+  }
+  
+  /* Sparkle animations for empty cart */
+  @keyframes sparkle {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.8; }
+  }
+  
+  @keyframes sparkleRotate {
+    0%, 100% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+  }
+  
+  /* Slide in up animation for modals */
+  @keyframes slideInUp {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -40%);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  .animate-slide-in-up {
+    animation: slideInUp 0.3s ease;
+  }
+  
+  /* Fade in animation */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease;
+  }
+}
+
+/* Custom scrollbar - Luxury Style */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4a43c;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #d7b964;
+}
+
+/* Hide scrollbar for categories container */
+.categories-scroll-luxury::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: rgba(196, 164, 60, 0.3);
+  color: #c4a43c;
+}
+
+
+/* استایل برای سرچ بار جدید */
+.search-bar-container {
+  animation: slideDown 0.4s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments for new search bar */
+@media (max-width: 768px) {
+  .home-page .search-bar-container {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* تنظیم فاصله برای صفحه اصلی */
+  main {
+    padding-top: 70px !important;
+  }
+}
+
+@media (min-width: 769px) {
+  main {
+    padding-top: 100px !important;
+  }
+}
+
+/* استایل برای هایلایت متن */
+.highlight-text {
+  background: linear-gradient(120deg, rgba(196, 164, 60, 0.25) 0%, rgba(196, 164, 60, 0.15) 40%, rgba(196, 164, 60, 0.25) 100%);
+  padding: 0 2px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #c4a43c;
+}
+
+.dark .highlight-text {
+  background: linear-gradient(120deg, rgba(196, 164, 60, 0.4) 0%, rgba(196, 164, 60, 0.25) 40%, rgba(196, 164, 60, 0.4) 100%);
+  color: #e0c460;
+}
+
+/* انیمیشن برای هایلایت */
+@keyframes highlightPulse {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+.highlight-pulse {
+  animation: highlightPulse 0.5s ease;
+}
